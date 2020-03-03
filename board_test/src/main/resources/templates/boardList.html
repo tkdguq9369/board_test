@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="2">
+		<tr>
+			<td>번호</td>
+			<td>카테고리</td>
+			<td>제목</td>
+			<td>작성자</td>
+			<td>등록일</td>
+			<td>조회수</td>
+			<td>추천수</td>
+		</tr>
+			<tr th:each="b, count : ${board}">
+				<td th:text="${count.count}"></td>
+				<td th:text="${b.bCate}"></td>
+				<td>
+					<a th:href="@{/boardContent(bCode=${b.bCode})}"><span th:text="${b.bTitle}"></span></a>
+				</td>
+				<td th:text="${b.bNick}"></td>
+				<td th:text="${b.bDate}"></td>
+				<td th:text="${b.bView}"></td>
+				<td th:text="${b.bRecom}"></td>
+			</tr>
+	</table>
+</body>
+</html>

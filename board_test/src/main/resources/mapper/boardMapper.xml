@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kr.or.board.board_test.mapper.BoardMapper">
+  	<resultMap type="kr.or.board.board_test.vo.Board" id="boardResultMap">
+  		<result property="bCode" column="board_code"/>
+  		<result property="bNum" column="board_num"/>
+  		<result property="bCate" column="board_cate"/>
+  		<result property="bTitle" column="board_title"/>
+  		<result property="bContent" column="board_content"/>
+  		<result property="bPw" column="board_pw"/>
+  		<result property="bNick" column="board_nick"/>
+  		<result property="bDate" column="board_date"/>
+  		<result property="bView" column="board_view"/>
+  		<result property="bRecom" column="board_recom"/>
+  	</resultMap>
+  
+  	<select id="getBoardList" resultMap="boardResultMap">
+  		SELECT * FROM board
+  	</select>
+  </mapper>
