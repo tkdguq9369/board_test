@@ -2,30 +2,63 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<style>
+td {
+	text-align: center;
+}
+
+#divTop {
+	text-align : center;
+	font-size: 40px;
+}
+
+#divTable {
+	width: 1000px;
+	height: 500px;
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	margin-left: -500px;
+	margin-top: -100px;
+}
+
+#divTable td {
+	width: 100px;
+}
+
+#divTable #title {
+	width: 400px;
+}
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="2">
-		<tr>
-			<td>번호</td>
-			<td>카테고리</td>
-			<td>제목</td>
-			<td>작성자</td>
-			<td>등록일</td>
-			<td>조회수</td>
-			<td>추천수</td>
-		</tr>
+	<div id="divTop">게시판 만들기</div>
+
+	<div id="divTable">
+		<table border="2">
+			<tr>
+				<td>번호</td>
+				<td>카테고리</td>
+				<td>제목</td>
+				<td>작성자</td>
+				<td>등록일</td>
+				<td>조회수</td>
+				<td>추천수</td>
+			</tr>
 			<tr th:each="b, count : ${board}">
 				<td th:text="${count.count}"></td>
 				<td th:text="${b.bCate}"></td>
-				<td>
-					<a th:href="@{/boardContent(bCode=${b.bCode})}"><span th:text="${b.bTitle}"></span></a>
-				</td>
+				<td id="title"><a th:href="@{/boardContent(bCode=${b.bCode})}">
+						<span th:text="${b.bTitle}"></span>
+				</a></td>
 				<td th:text="${b.bNick}"></td>
 				<td th:text="${b.bDate}"></td>
 				<td th:text="${b.bView}"></td>
 				<td th:text="${b.bRecom}"></td>
 			</tr>
-	</table>
+		</table>
+	</div>
 </body>
 </html>

@@ -4,16 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="kr.or.board.board_test.mapper.BoardMapper">
   	<resultMap type="kr.or.board.board_test.vo.Board" id="boardResultMap">
-  		<result property="bCode" column="board_code"/>
-  		<result property="bNum" column="board_num"/>
-  		<result property="bCate" column="board_cate"/>
-  		<result property="bTitle" column="board_title"/>
-  		<result property="bContent" column="board_content"/>
-  		<result property="bPw" column="board_pw"/>
-  		<result property="bNick" column="board_nick"/>
-  		<result property="bDate" column="board_date"/>
-  		<result property="bView" column="board_view"/>
-  		<result property="bRecom" column="board_recom"/>
+  		<result property="bCode" column="b_code"/>
+  		<result property="bCate" column="b_cate"/>
+  		<result property="bTitle" column="b_title"/>
+  		<result property="bContent" column="b_content"/>
+  		<result property="bPw" column="b_pw"/>
+  		<result property="bNick" column="b_nick"/>
+  		<result property="bDate" column="b_date"/>
+  		<result property="bView" column="b_view"/>
+  		<result property="bRecom" column="b_recom"/>
   	</resultMap>
   
   	<select id="getBoardList" resultMap="boardResultMap">

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kr.or.board.board_test.mapper.UserMapper">
+  	<resultMap type="kr.or.board.board_test.vo.User" id="userResultMap">
+  		<result property="uId" column="u_id"/>
+  		<result property="uPw" column="u_pw"/>
+  		<result property="uName" column="u_name"/>
+  		<result property="uBirth" column="u_birth"/>
+  		<result property="uNick" column="u_nick"/>
+  		<result property="uDate" column="u_date"/>
+  	</resultMap>
+  
+  	<select id="getBoardList">
+  		SELECT * FROM board
+  	</select>
+  </mapper>
