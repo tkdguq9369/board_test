@@ -12,7 +12,7 @@
   		<result property="uDate" column="u_date"/>
   	</resultMap>
   
-  	<select id="getBoardList">
-  		SELECT * FROM board
+  	<select id="idCheck" parameterType="String" resultMap="userResultMap">
+  		SELECT * FROM user WHERE u_id = #{uId}
   	</select>
   </mapper>

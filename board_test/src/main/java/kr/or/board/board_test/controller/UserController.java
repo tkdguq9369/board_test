@@ -12,21 +12,22 @@ import kr.or.board.board_test.vo.User;
 
 @Controller
 public class UserController {
-	@Autowired UserService userService;
-	
+	@Autowired
+	UserService userService;
+
 	@GetMapping("/userLogin")
 	public String login() {
 		return "userLogin";
 	}
-	
+
 	@PostMapping("/userLogin")
 	public String loginPro(User user) {
 		return "";
 	}
-	
+
 	@PostMapping("/duplicateCheck")
-	public @ResponseBody String duplicateCheck(@RequestParam(value = "uId")String uId) {
-		
-		return "";
+	public @ResponseBody boolean duplicateCheck(@RequestParam(value = "uId") String uId) {
+		boolean idExist = userService.idCheck(uId);
+		return idExist;
 	}
 }

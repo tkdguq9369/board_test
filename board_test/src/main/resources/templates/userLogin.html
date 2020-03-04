@@ -27,29 +27,36 @@
 				alert('닉네임을 입력해주세요.');
 				return false;
 			}
-			
+
 			$('#loginForm').submit();
 		})
-		
-		$('#duplicateCheck').click(function(){
+
+		$('#duplicateCheck').click(function() {
 			var id = $('#userId').val();
 			var request = $.ajax({
-				  url: "/duplicateCheck",
-				  method: "POST",
-				  data: { uId : id },
-				  dataType: "text"
-				});
-				 
-				request.done(function( data ) {
-					console.log(data)
-				});
-				 
-				request.fail(function( jqXHR, textStatus ) {
-				  alert( "Request failed: " + textStatus );
-				});
-				
+				url : "/duplicateCheck",
+				method : "POST",
+				data : {
+					uId : id
+				},
+				dataType : "text"
+			});
+
+			request.done(function(data) {
+				console.log(data)
+				if (data == 'true') {
+					alert('이미 가입된 아이디입니다.');
+				} else if (data == 'false') {
+					alert('사용 가능한 아이디입니다.');
+				}
+			});
+
+			request.fail(function(jqXHR, textStatus) {
+				alert("Request failed: " + textStatus);
+			});
+
 		})
-		
+
 	})
 </script>
 <title>회원가입 페이지</title>
@@ -58,8 +65,9 @@
 	회원가입 페이지
 	<br>
 	<form id="loginForm" th:action="@{/userLogin}" method="post">
-		아이디 : <input type="text" id="userId" name="uId"> &ensp; &ensp; <button type="button" id="duplicateCheck">중복확인</button><br>
-		패스워드 : <input type="password" id="userPw" name="uPw"><br>
+		아이디 : <input type="text" id="userId" name="uId"> &ensp; &ensp;
+		<button type="button" id="duplicateCheck">중복확인</button>
+		<br> 패스워드 : <input type="password" id="userPw" name="uPw"><br>
 		이름 : <input type="text" id="userName" name="uName"><br>
 		생년월일 : <input type="text" id="userBirth" name="uBirth"><br>
 		닉네임 : <input type="text" id="userNick" name="uNick"><br>
