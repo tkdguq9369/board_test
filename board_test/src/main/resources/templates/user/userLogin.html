@@ -7,37 +7,24 @@
 <script>
 	$(document).ready(function() {
 		$('#loginSubmit').click(function() {
+			var id = $('#userId').val();
+			var pw = $('#userPw').val();
+
 			if ($('#userId').val() == '') {
-				alert('아이디를 입력해주세요.');
+				alert('아이디를 입력해주세요.')
 				return false;
 			}
 			if ($('#userPw').val() == '') {
-				alert('패스워드를 입력해주세요.');
-				return false;
-			}
-			if ($('#userName').val() == '') {
-				alert('이름을 입력해주세요.');
-				return false;
-			}
-			if ($('#userBirth').val() == '') {
-				alert('생년월일을 입력해주세요.');
-				return false;
-			}
-			if ($('#userNick').val() == '') {
-				alert('닉네임을 입력해주세요.');
+				alert('비밀번호를 입력해주세요.')
 				return false;
 			}
 
-			$('#loginForm').submit();
-		})
-
-		$('#duplicateCheck').click(function() {
-			var id = $('#userId').val();
 			var request = $.ajax({
 				url : "/duplicateCheck",
 				method : "POST",
 				data : {
-					uId : id
+					uId : id,
+					uPw : pw
 				},
 				dataType : "text"
 			});
@@ -45,9 +32,10 @@
 			request.done(function(data) {
 				console.log(data)
 				if (data == 'true') {
-					alert('이미 가입된 아이디입니다.');
+					$('#loginForm').submit();
 				} else if (data == 'false') {
-					alert('사용 가능한 아이디입니다.');
+					alert('아이디 비밀번호가 일치하지 않습니다.');
+					location.reload();
 				}
 			});
 
@@ -59,20 +47,17 @@
 
 	})
 </script>
-<title>회원가입 페이지</title>
+<title>로그인 페이지</title>
 </head>
 <body>
-	회원가입 페이지
+	로그인 페이지
 	<br>
 	<form id="loginForm" th:action="@{/userLogin}" method="post">
 		아이디 : <input type="text" id="userId" name="uId"> &ensp; &ensp;
-		<button type="button" id="duplicateCheck">중복확인</button>
 		<br> 패스워드 : <input type="password" id="userPw" name="uPw"><br>
-		이름 : <input type="text" id="userName" name="uName"><br>
-		생년월일 : <input type="text" id="userBirth" name="uBirth"><br>
-		닉네임 : <input type="text" id="userNick" name="uNick"><br>
-
-		<button type="button" id="loginSubmit">회원가입</button>
+		<button type="button" id="loginSubmit">로그인</button>
+		&ensp;
+		<button type="button" onclick="location.href = '/signUp';">회원가입</button>
 		<br> <br> <br>
 	</form>
 	<button onclick="history.go(-1)">돌아가기</button>

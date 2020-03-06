@@ -12,7 +12,18 @@
   		<result property="uDate" column="u_date"/>
   	</resultMap>
   
+  	<!-- id 중복확인 -->
   	<select id="idCheck" parameterType="String" resultMap="userResultMap">
   		SELECT * FROM user WHERE u_id = #{uId}
+  	</select>
+  
+ 	 <!-- ajax DB id pw 일치 유저 확인 -->	
+  	<select id="userCheck" parameterType="String" resultMap="userResultMap">
+  		SELECT * FROM user WHERE u_id = #{uId} and u_pw = #{uPw}
+  	</select>
+  	
+  	<!-- ajax 일치 유저가 있다면 로그인 처리 -->
+  	<select id="userLogin" parameterType="String" resultMap="userResultMap">
+  		SELECT * FROM user WHERE u_id = #{uId} and u_pw = #{uPw}
   	</select>
   </mapper>

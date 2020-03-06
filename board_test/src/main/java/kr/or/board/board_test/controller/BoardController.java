@@ -17,6 +17,6 @@ public class BoardController {
 	public String boardList(Model model) {
 		model.addAttribute("board", boardService.getBoardList());
 		System.out.println(boardService.getBoardList());
-		return "boardList";
+		return "board/boardList";
 	}
 }
