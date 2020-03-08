@@ -26,4 +26,11 @@
   	<select id="userLogin" parameterType="String" resultMap="userResultMap">
   		SELECT * FROM user WHERE u_id = #{uId} and u_pw = #{uPw}
   	</select>
+  	
+  	<insert id="signUp">
+  		INSERT INTO user
+			(u_id, u_pw, u_name, u_birth, u_nick, u_date)
+		VALUES (#{uId}, #{uPw}, #{uName}, #{uBirth}, #{uNick}, NOW())
+  	</insert>
+  	
   </mapper>

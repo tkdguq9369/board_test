@@ -34,10 +34,10 @@ public class UserService {
 	public boolean userCheck(String uId, String uPw) {
 		User u = userMapper.userCheck(uId, uPw);
 		boolean idpw = true;
-		if(u == null) { // id pw 일치하지 않음
+		if (u == null) { // id pw 일치하지 않음
 			idpw = false;
 			return idpw;
-		}else { //id pw 일치
+		} else { // id pw 일치
 			return idpw;
 		}
 	}

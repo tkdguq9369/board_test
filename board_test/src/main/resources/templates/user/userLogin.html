@@ -20,7 +20,7 @@
 			}
 
 			var request = $.ajax({
-				url : "/duplicateCheck",
+				url : "/idCheck",
 				method : "POST",
 				data : {
 					uId : id,
@@ -32,6 +32,7 @@
 			request.done(function(data) {
 				console.log(data)
 				if (data == 'true') {
+					alert('로그인 되었습니다.');
 					$('#loginForm').submit();
 				} else if (data == 'false') {
 					alert('아이디 비밀번호가 일치하지 않습니다.');

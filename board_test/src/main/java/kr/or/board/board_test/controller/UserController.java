@@ -34,6 +34,13 @@ public class UserController {
 		return "index";
 	}
 
+	/* 유저 로그아웃 */
+	@GetMapping("/logout")
+	public String userLogout(HttpSession session) {
+		session.invalidate();
+		return "index";
+	}
+
 	/* 회원가입 페이지로 이동 */
 	@GetMapping("/signUp")
 	public String signUp() {
@@ -43,7 +50,8 @@ public class UserController {
 	/* 회원가입 폼 */
 	@PostMapping("/signUp")
 	public String signUpPro(User user) {
-		return "/";
+		userService.signUp(user);
+		return "index";
 	}
 
 	/* ajax 아이디 중복확인 */
@@ -59,14 +67,8 @@ public class UserController {
 			@RequestParam(value = "uPw") String uPw) {
 		System.out.println(uId + " " + uPw);
 		boolean idpw = userService.userCheck(uId, uPw);
+		System.out.println(idpw);
 		return idpw;
 	}
-	
-	
-	/* 유저 로그아웃 */
-	@GetMapping("/logout")
-	public String userLogout(HttpSession session) {
-		session.invalidate();
-		return "index";
-	}
+
 }

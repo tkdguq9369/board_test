@@ -6,6 +6,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
+		/* 유효성 검사  */
 		$('#signUpSubmit').click(function() {
 			if ($('#userId').val() == '') {
 				alert('아이디를 입력해주세요.');
@@ -27,33 +28,40 @@
 				alert('닉네임을 입력해주세요.');
 				return false;
 			}
-
+			// 아이디를 재입력하면 duplicateCheck를 false로 변경시키기.
 			$('#signUpForm').submit();
 		})
-
+	
+		/* 아이디 중복확인  */
 		$('#duplicateCheck').click(function() {
 			var id = $('#userId').val();
-			var request = $.ajax({
-				url : "/duplicateCheck",
-				method : "POST",
-				data : {
-					uId : id
-				},
-				dataType : "text"
-			});
+			if(id != ''){
+				var request = $.ajax({
+					url : "/duplicateCheck",
+					method : "POST",
+					data : {
+						uId : id
+					},
+					dataType : "text"
+				});
+			
 
-			request.done(function(data) {
-				console.log(data)
-				if (data == 'true') {
-					alert('이미 가입된 아이디입니다.');
-				} else if (data == 'false') {
-					alert('사용 가능한 아이디입니다.');
-				}
-			});
-
-			request.fail(function(jqXHR, textStatus) {
-				alert("Request failed: " + textStatus);
-			});
+				request.done(function(data) {
+					console.log(data)
+					if (data == 'true') {
+						alert('이미 가입된 아이디입니다.');
+					} else if (data == 'false') {
+						alert('사용 가능한 아이디입니다.');
+					}
+						
+				});
+	
+				request.fail(function(jqXHR, textStatus) {
+					alert("Request failed: " + textStatus);
+				});
+			} else {
+				alert('아이디를 입력해주세요.')
+			}
 
 		})
 
