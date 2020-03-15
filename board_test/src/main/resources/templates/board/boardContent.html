@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 쓰기 페이지</title>
+
+<style>
+td {text-align: center;}
+
+button {
+	width : 100px;
+	height : 50px;
+	font-size: 17px;
+}
+
+a {text-decoration: none;}
+
+#divTop {
+	text-align : center;
+	font-size: 40px;
+}
+
+#divHead {
+	background-color : yellow;
+	width: 1000px;
+	height: 150px;
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	margin-left: -500px;
+	margin-top: -100px;
+}
+#divContent {
+	background-color : lime;
+	height: 500px;
+}
+
+</style>
+</head>
+<body>
+	<div id="divTop">
+		게시글 <br>
+	</div>
+	<div id="divHead">
+		<div>
+			<a th:href="@{/boardList}" style="font-size: 20px;">게시판으로 이동</a>
+		</div>
+			<div>
+				<h3 th:text="|[${content.bCate}] ${content.bTitle}|"></h3>
+			</div>
+		<div>
+			<div style="float: left">
+				<span th:text="${content.bNick}"></span> | <span th:text = "${content.bDate}"></span> 
+			</div>
+			<div style="float: right">
+				<span th:text="|조회  ${content.bView}|"></span> | <span th:text = "|추천 ${content.bRecom}|"></span>
+			</div>
+		</div>
+		<br>
+		<hr>
+		<br>
+		
+		<div id="divContent">
+			<p th:text="${content.bContent}"></p>
+			
+		</div>
+		<div style="margin-top: 5px;">
+			<div style="float: left;">
+				<button>전체글</button>
+			</div>
+			<div style="float: right;">
+				<button>수정</button>
+				<button>삭제</button>
+				<button>글쓰기</button>
+			</div>
+		</div>
+	<div style="height: 200px;" ex="footer자리"></div>
+	</div>
+		
+</body>
+</html>

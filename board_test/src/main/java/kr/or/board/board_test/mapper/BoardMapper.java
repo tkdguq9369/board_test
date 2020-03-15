@@ -11,4 +11,7 @@ public interface BoardMapper {
 
 	// 보드 리스트 전체를 가져온다.
 	public List<Board> getBoardList();
+	
+	// 보드 게시글 한개를 가져온다.
+	public Board getBoardContent(String bCode);
 }

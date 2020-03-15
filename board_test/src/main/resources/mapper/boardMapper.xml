@@ -18,4 +18,7 @@
   	<select id="getBoardList" resultMap="boardResultMap">
   		SELECT * FROM board
   	</select>
+  	<select id="getBoardContent" parameterType="String" resultMap="boardResultMap">
+  		SELECT * FROM board WHERE b_Code = #{bCode}
+  	</select>
   </mapper>

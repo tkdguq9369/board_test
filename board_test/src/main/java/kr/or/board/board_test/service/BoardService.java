@@ -44,5 +44,10 @@ public class BoardService {
 		}
 		return bl;
 	}
+	
+	// 보드 게시글 한개를 가져온다.
+		public Board getBoardContent(String bCode) {
+			return boardMapper.getBoardContent(bCode);
+		}
 
 }

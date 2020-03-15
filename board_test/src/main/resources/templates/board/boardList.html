@@ -29,14 +29,26 @@ td {
 #divTable #title {
 	width: 400px;
 }
+
+#nickname{font-size: 25px; color: blue;}
 </style>
 
 <title>게시판</title>
 </head>
 <body>
-	<div id="divTop">게시판 만들기</div>
-<button onclick="location.href = '/';">돌아가기</button>
+	<div id="divTop">
+		게시판 만들기 <br>
+		<span id="nickname" th:text="|${session.SNICK}님이 로그인중|"></span>
+	</div>
+
 	<div id="divTable">
+			<div style="text-align: right;">
+				<select>
+					<option value="10">10개</option>
+					<option value="20">20개</option>
+					<option value="30">30개</option>
+				</select>
+			</div>
 		<table border="2">
 			<tr>
 				<td>번호</td>
@@ -62,7 +74,11 @@ td {
 		<br>
 		
 		<div>
-			<button>글쓰기</button>
+			<div style="width: 140px;">
+				<button>글쓰기</button>
+				<button onclick="location.href = '/';">돌아가기</button>
+			</div>
+			
 		</div>
 		
 		<br>
