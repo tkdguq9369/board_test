@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.board.board_test.service.BoardService;
 
@@ -25,5 +27,11 @@ public class BoardController {
 	public String boardContent(@RequestParam(value = "bCode") String bCode, Model model) {
 		model.addAttribute("content", boardService.getBoardContent(bCode));
 		return "board/boardContent";
+	}
+	
+	@PostMapping("/contentDel")
+	public @ResponseBody String contentDel(@RequestParam(value="bCode") String bCode) {
+		boardService.delContent(bCode);
+		return "게시글이 삭제되었습니다.";
 	}
 }

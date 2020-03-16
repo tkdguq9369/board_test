@@ -16,9 +16,16 @@
   	</resultMap>
   
   	<select id="getBoardList" resultMap="boardResultMap">
-  		SELECT * FROM board
+  		SELECT * FROM board LIMIT 0, 10
   	</select>
+  	
   	<select id="getBoardContent" parameterType="String" resultMap="boardResultMap">
   		SELECT * FROM board WHERE b_Code = #{bCode}
   	</select>
+  	
+  	<select id="delContent" parameterType="String" resultMap="boardResultMap">
+  		DELETE FROM board WHERE b_code = #{bCode}
+  	</select>
+  	
+  	
   </mapper>

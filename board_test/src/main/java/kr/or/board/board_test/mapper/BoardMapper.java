@@ -14,4 +14,7 @@ public interface BoardMapper {
 	
 	// 보드 게시글 한개를 가져온다.
 	public Board getBoardContent(String bCode);
+	
+	// 보드 게시글 한개를 제거한다.
+	public void delContent(String bCode);
 }

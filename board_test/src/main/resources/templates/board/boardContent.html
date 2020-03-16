@@ -3,7 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>글 쓰기 페이지</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:inline="javascript">
+	$(document).ready(function() {
+		var bCode = [[${content.bCode}]];
+		
+		$('#conDel').click(function(){
+			var request = $.ajax({
+				url : "/contentDel",
+				method : "POST",
+				data : {
+					bCode : bCode
+				},
+				dataType : "text"
+			});
+		
 
+			request.done(function(data) {
+				alert(data);
+				location.href = '/boardList';
+			});
+
+			request.fail(function(jqXHR, textStatus) {
+				alert("Request failed: " + textStatus);
+			});
+		})
+	})
+</script>
 <style>
 td {text-align: center;}
 
@@ -43,7 +70,7 @@ a {text-decoration: none;}
 	</div>
 	<div id="divHead">
 		<div>
-			<a th:href="@{/boardList}" style="font-size: 20px;">게시판으로 이동</a>
+			<a th:href="@{/boardList}" style="font-size: 20px;">게시판으로 이동</a><!-- 이거는 게시판의 맨 처음으로 갈것. -->
 		</div>
 			<div>
 				<h3 th:text="|[${content.bCate}] ${content.bTitle}|"></h3>
@@ -66,11 +93,11 @@ a {text-decoration: none;}
 		</div>
 		<div style="margin-top: 5px;">
 			<div style="float: left;">
-				<button>전체글</button>
+				<button onclick="location.href='/boardList';">전체글</button> <!-- 이거는 누른 콘텐츠가 있는 보드 리스트로 가기 -->
 			</div>
 			<div style="float: right;">
 				<button>수정</button>
-				<button>삭제</button>
+				<button id="conDel">삭제</button>
 				<button>글쓰기</button>
 			</div>
 		</div>
