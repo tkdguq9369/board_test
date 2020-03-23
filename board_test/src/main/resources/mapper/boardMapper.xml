@@ -16,16 +16,31 @@
   	</resultMap>
   
   	<select id="getBoardList" resultMap="boardResultMap">
-  		SELECT * FROM board LIMIT 0, 10
+  		SELECT * FROM board order BY board.b_date DESC LIMIT 0, 10
   	</select>
   	
   	<select id="getBoardContent" parameterType="String" resultMap="boardResultMap">
   		SELECT * FROM board WHERE b_Code = #{bCode}
   	</select>
   	
-  	<select id="delContent" parameterType="String" resultMap="boardResultMap">
+  	<delete id="delContent" parameterType="String">
   		DELETE FROM board WHERE b_code = #{bCode}
-  	</select>
+  	</delete>
+  	
+  	<insert id="contentWrite">
+  		<selectKey keyProperty="bCode" resultType="String" order="BEFORE">
+  			SELECT 
+				CONCAT('b-',DATE_FORMAT(CURDATE(), '%y%m%d'),
+					(IF(DATE_FORMAT(CURDATE(),'%y%m%d') > LEFT(SUBSTRING_INDEX(MAX(b.b_code), '-', -1),6) 
+					, '00001' 
+					,LPAD(RIGHT(MAX(b.b_code),5)+1,5,'0'))))
+			FROM 
+				board AS b
+  		</selectKey>
+  		INSERT INTO board
+			(b_code, b_cate, b_title, b_content, b_pw, b_nick, b_date, b_view, b_recom)
+		VALUES (#{bCode}, #{bCate}, #{bTitle}, #{bContent}, #{bPw}, #{bNick}, NOW(), 0, 0)
+  	</insert>
   	
   	
   </mapper>

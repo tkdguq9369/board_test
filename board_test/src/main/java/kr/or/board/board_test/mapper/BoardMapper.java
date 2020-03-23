@@ -17,4 +17,7 @@ public interface BoardMapper {
 	
 	// 보드 게시글 한개를 제거한다.
 	public void delContent(String bCode);
+	
+	// 게시글 등록하기.
+	public void contentWrite(Board board);
 }

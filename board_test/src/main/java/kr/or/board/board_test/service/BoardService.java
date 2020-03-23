@@ -1,5 +1,7 @@
 package kr.or.board.board_test.service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,6 +55,25 @@ public class BoardService {
 	// 보드 게시글 한개를 제거한다.
 	public void delContent(String bCode) {
 		boardMapper.delContent(bCode);
+	}
+
+	// 게시글 등록하기.
+	
+	public void contentWrite(Board board) {
+		if(board.getbPw() != null) { // 비회원의 경우 게시판 등록시 비밀번호를 적어야한다.
+			InetAddress local;
+			try {
+				local = InetAddress.getLocalHost();
+				String ip = local.getHostAddress();
+				String[] array = ip.split("\\.");
+				String nickIp = " ("+array[0]+"."+array[1]+")";
+				String nick = board.getbNick();
+				board.setbNick(nick+nickIp);
+			}catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+		}
+		boardMapper.contentWrite(board);
 	}
 
 }

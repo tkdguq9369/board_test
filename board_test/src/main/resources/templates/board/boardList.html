@@ -13,8 +13,9 @@ td {
 }
 
 #divTable {
+	background-color:aqua;
 	width: 1000px;
-	height: 300px;
+	height: 70%;
 	position: absolute;
 	left: 50%;
 	top: 30%;
@@ -38,7 +39,13 @@ td {
 <body>
 	<div id="divTop">
 		게시판 만들기 <br>
-		<span id="nickname" th:text="|${session.SNICK}님이 로그인중|"></span>
+		<th:block th:if="${session.SNICK} != null">
+			<span id="nickname" th:text="|${session.SNICK}님이 로그인중|"></span>
+		</th:block>
+		<th:block th:unless="${session.SNICK} != null">
+			<span id="nickname">로그인을 해주세요.</span>
+		</th:block>
+		
 	</div>
 
 	<div id="divTable">
@@ -75,7 +82,7 @@ td {
 		
 		<div>
 			<div style="width: 140px;">
-				<button>글쓰기</button>
+				<button onclick="location.href='/boardWirte';">글쓰기</button>
 				<button onclick="location.href = '/';">돌아가기</button>
 			</div>
 			

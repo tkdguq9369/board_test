@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.board.board_test.service.BoardService;
+import kr.or.board.board_test.vo.Board;
 
 @Controller
 public class BoardController {
@@ -33,5 +34,16 @@ public class BoardController {
 	public @ResponseBody String contentDel(@RequestParam(value="bCode") String bCode) {
 		boardService.delContent(bCode);
 		return "게시글이 삭제되었습니다.";
+	}
+	
+	@GetMapping("/boardWirte")
+	public String boardWirte() {
+		return "board/boardWirte";
+	}
+	
+	@PostMapping("/boardWirte")
+	public String contentInsert(Board board) {
+		boardService.contentWrite(board);
+		return "redirect:boardList";
 	}
 }

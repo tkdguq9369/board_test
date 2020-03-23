@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 쓰기 페이지</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:inline="javascript">
+	$(document).ready(function() {
+		$('#wirteOk').click(function(){
+			$('#contentForm').submit();
+			alert('등록되었습니다.');
+		})
+	})
+</script>
+<style>
+td{
+	height: 40px;
+}
+
+button {
+	width : 100px;
+	height : 50px;
+	font-size: 17px;
+}
+
+a {text-decoration: none;}
+
+#divTop {
+	text-align : center;
+	font-size: 40px;
+}
+
+#divHead {
+	background-color : yellow;
+	width: 1000px;
+	height: 70px;
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	margin-left: -500px;
+	margin-top: -100px;
+}
+#divContent {
+	background-color : lime;
+	height: 550px;
+	margin-top: 100px;
+}
+#conTitle{
+	width: 80%;
+	height: 30px;
+	font-size: 20px;
+}
+.noLogin{
+	width: 30%;
+	height: 30px;
+	font-size: 20px;
+}
+
+</style>
+</head>
+<body>
+	<div id="divTop">
+		글쓰기 <br>
+	</div>
+	<div id="divHead">
+		<div style="margin-bottom: 20px;">
+			<a th:href="@{/boardList}" style="font-size: 20px;">게시판으로 이동</a><!-- 이거는 게시판의 맨 처음으로 갈것. -->
+		</div>
+		
+			
+		<div id="divContent">
+			<form id="contentForm" th:action="@{/boardWirte}" method="post">
+				<table border="2" style="width: 80%;">
+					<tr>
+						<td>
+							<input id="conTitle" name="bTitle" type="text" placeholder="제목을 입력해주세요.">
+							<select name ="bCate" style="width: 15%; height: 80%; font-size: 20px;">
+							<th:block th:if="${session.SNICK} == '관리자'">
+								<option value="공지">공지사항</option>
+							</th:block>
+								<option value="일반">일반</option>
+								<option value="공략">공략</option>
+							</select>
+						</td>
+					</tr>
+						<!-- 비회원 전용, 닉네임 / 글 수정 패스워드 -->
+						<th:block th:if="${session.SNICK} == null">
+							<tr>
+								<td>
+									<input class="noLogin" type="text" name="bNick" placeholder="닉네임을 입력해주세요.">
+									<input class="noLogin" type="password" name="bPw" placeholder="패스워드를 입력해주세요." maxlength="10">
+									<span style="color: red; font-size: 15px;">패스워드는 최대 10자입니다.</span>
+								</td>
+							</tr>
+						</th:block>
+						<!-- 회원 전용, 닉네임 / 글 수정 패스워드 숨김 -->
+						<th:block th:if="${session.SNICK} != null">
+									<input type="hidden" name="bNick" th:value="${session.SNICK}">
+						</th:block>
+						
+					<tr>
+						<td>
+							<textarea name="bContent" style="width: 95%; height: 430px; resize: none;"></textarea>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div style="margin-top: 5px;">
+			<div style="float: right;">
+				<button onclick="history.back(-1)">취소</button>
+				<button type="button" id="wirteOk">등록</button>
+			</div>
+		</div>
+	<div style="height: 200px;" ex="footer자리"></div>
+	</div>
+		
+</body>
+</html>

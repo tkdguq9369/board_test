@@ -9,6 +9,7 @@
   		<result property="uName" column="u_name"/>
   		<result property="uBirth" column="u_birth"/>
   		<result property="uNick" column="u_nick"/>
+  		<result property="uLevel" column="u_level"/>
   		<result property="uDate" column="u_date"/>
   	</resultMap>
   
