@@ -35,6 +35,31 @@ td {
 </style>
 
 <title>게시판</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:inline="javascript">
+	$(document).ready(function() {
+			var url = "/boardList";
+			var pageNum = [[${pageNum}]]; // 현재 페이지 번호
+			var listNum = [[${listNum}]]; // 현재 보여질 컨텐츠 갯수 10, 20, 30
+			console.log($('#listNumId').val())
+			
+			var selectLength = $('#listNumId option').length
+			
+			for(var i = 0; i < selectLength; i++){	// option만큼 반복. 해당되는 value와 동일하면 selected해주기
+				if($('#listNumId option').eq(i).val() == listNum){
+					console.log($('#listNumId option').eq(i).val());
+					$('#listNumId option').eq(i).attr('selected',true);
+				}
+				
+			}
+		
+		$('#listNumId').change(function(){
+			location.href = url + '?listNum=' + $(this).val();
+		})
+		
+	})
+</script>
 </head>
 <body>
 	<div id="divTop">
@@ -43,16 +68,15 @@ td {
 			<span id="nickname" th:text="|${session.SNICK}님이 로그인중|"></span>
 		</th:block>
 		<th:block th:unless="${session.SNICK} != null">
-			<span id="nickname">로그인을 해주세요.</span>
+			<span id="nickname"><a th:href="@{/userLogin}">로그인을 해주세요.</a></span>
 		</th:block>
-		
 	</div>
 
 	<div id="divTable">
 			<div style="text-align: right;">
-				<select>
+				<select name = "listNum" id="listNumId">
 					<option value="10">10개</option>
-					<option value="20">20개</option>
+					<option value="20" selected="selected">20개</option>
 					<option value="30">30개</option>
 				</select>
 			</div>

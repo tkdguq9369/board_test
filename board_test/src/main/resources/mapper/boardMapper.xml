@@ -16,7 +16,12 @@
   	</resultMap>
   
   	<select id="getBoardList" resultMap="boardResultMap">
-  		SELECT * FROM board order BY board.b_date DESC LIMIT 0, 10
+  		<if test="pageNum == null and listNum == null">
+  			SELECT * FROM board order BY board.b_date DESC LIMIT 0, 20
+  		</if>
+  		<if test="pageNum != null or listNum != null">
+  			SELECT * FROM board order BY board.b_date DESC LIMIT 0, ${listNum}
+  		</if>
   	</select>
   	
   	<select id="getBoardContent" parameterType="String" resultMap="boardResultMap">
