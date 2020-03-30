@@ -10,6 +10,8 @@
   		<result property="bContent" column="b_content"/>
   		<result property="bPw" column="b_pw"/>
   		<result property="bNick" column="b_nick"/>
+  		<result property="bFileName" column="b_file_name"/>
+  		<result property="bFileDir" column="b_file_dir"/>
   		<result property="bDate" column="b_date"/>
   		<result property="bView" column="b_view"/>
   		<result property="bRecom" column="b_recom"/>
@@ -43,8 +45,8 @@
 				board AS b
   		</selectKey>
   		INSERT INTO board
-			(b_code, b_cate, b_title, b_content, b_pw, b_nick, b_date, b_view, b_recom)
-		VALUES (#{bCode}, #{bCate}, #{bTitle}, #{bContent}, #{bPw}, #{bNick}, NOW(), 0, 0)
+			(b_code, b_cate, b_title, b_content, b_pw, b_nick,b_file_name, b_file_dir, b_date, b_view, b_recom)
+		VALUES (#{bCode}, #{bCate}, #{bTitle}, #{bContent}, #{bPw}, #{bNick}, #{bFileName}, #{bFileDir}, NOW(), 0, 0)
   	</insert>
   	
   	

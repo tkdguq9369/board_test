@@ -43,7 +43,7 @@ a {text-decoration: none;}
 }
 #divContent {
 	background-color : lime;
-	height: 550px;
+	height: 600px;
 	margin-top: 100px;
 }
 #conTitle{
@@ -70,7 +70,7 @@ a {text-decoration: none;}
 		
 			
 		<div id="divContent">
-			<form id="contentForm" th:action="@{/boardWirte}" method="post">
+			<form id="contentForm" th:action="@{/boardWirte}" method="post" enctype="multipart/form-data"> 
 				<table border="2" style="width: 80%;">
 					<tr>
 						<td>
@@ -104,10 +104,13 @@ a {text-decoration: none;}
 							<textarea name="bContent" style="width: 95%; height: 430px; resize: none;"></textarea>
 						</td>
 					</tr>
+					<tr>
+						<td> &emsp;파일 첨부 &emsp;<input type="file" name="file"></td>
+					</tr>
 				</table>
 			</form>
 		</div>
-		<div style="margin-top: 5px;">
+		<div style="margin-top: 10px;">
 			<div style="float: right;">
 				<button onclick="history.back(-1)">취소</button>
 				<button type="button" id="wirteOk">등록</button>
