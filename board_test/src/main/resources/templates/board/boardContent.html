@@ -92,8 +92,8 @@ a {text-decoration: none;}
 			<img th:src="|/images/${content.bFileName}|" style="width: 50%; height: 100%;">
 		</div>
 		<div id="upload">
-			첨부된 파일 : &ensp; <a th:href="|/images/${content.bFileName}|" download><span th:text="${content.bFileName}"></span></a>
-			
+			첨부된 파일 : &ensp; 
+				<a th:href="|/images/${content.bFileName}|" download><span th:text="${content.bFileName}"></span></a>
 		</div>
 		<div style="margin-top: 5px;">
 			<div style="float: left;">
